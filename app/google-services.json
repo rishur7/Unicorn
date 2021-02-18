@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "16304364080",
+    "project_id": "unicorn-7rr7",
+    "storage_bucket": "unicorn-7rr7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:16304364080:android:8863cc32fd3b80ecbfabf5",
+        "android_client_info": {
+          "package_name": "com.example.unicorn"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "16304364080-llsam3578thqvasmor52u3ns7is4dsgd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.unicorn",
+            "certificate_hash": "51e39414adbab006bf185005a3a571d0e2b8b603"
+          }
+        },
+        {
+          "client_id": "16304364080-uqqldsu4pt4kgp54861f7e42unvoa275.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByIYOQs3s7GxNVT4v_69tmfTkHGR85wpI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "16304364080-uqqldsu4pt4kgp54861f7e42unvoa275.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
