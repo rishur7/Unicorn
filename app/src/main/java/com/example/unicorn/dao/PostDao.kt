@@ -1,5 +1,9 @@
 package com.example.unicorn.dao
 
+import android.content.Intent
+import android.widget.TextView
+import android.widget.Toast
+import com.example.unicorn.EditPostActivity
 import com.example.unicorn.models.Post
 import com.example.unicorn.models.User
 import com.google.android.gms.tasks.Task
@@ -26,6 +30,25 @@ class PostDao {
             postCollection.document().set(post)
         }
     }
+fun editPost(postId: String , text:String) {
+    val currentUserId= auth.currentUser!!.uid
+    GlobalScope.launch {
+        val post = getPostById(postId).await().toObject(Post::class.java)!!
+        post.text = text
+        post.createdAt = System.currentTimeMillis()
+        postCollection.document(postId).set(post)
+    }
+}
+    fun deletePost(postId:String) {
+        GlobalScope.launch {
+            val currentUserId = auth.currentUser!!.uid
+            val post = getPostById(postId).await().toObject(Post::class.java)!!
+            val userSearch=post.createdBy.uid
+            if(currentUserId==userSearch) {
+                postCollection.document(postId).delete()
+            }
+            }
+    }
     fun getPostById(postId:String): Task<DocumentSnapshot> {
         return postCollection.document(postId).get() //will search this id in firebase
     }
@@ -45,3 +68,4 @@ class PostDao {
         }
     }
 }
+/* add karna ho jab tab "set" use karna */

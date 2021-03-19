@@ -1,7 +1,7 @@
 package com.example.unicorn.models
 
 class Post (
-    val text:String="",
+    var text:String="",
     val createdBy:User = User(),
-    val createdAt:Long = 0L,
+    var createdAt:Long = 0L,
     var LikedBy:ArrayList<String> = ArrayList())

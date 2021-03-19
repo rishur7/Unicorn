@@ -1,19 +1,19 @@
 package com.example.unicorn
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.View.GONE
+import androidx.appcompat.app.AppCompatActivity
+import com.example.unicorn.dao.UserDao
+import com.example.unicorn.models.User
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
-import android.view.View
-import android.view.View.GONE
-import com.example.unicorn.dao.UserDao
-import com.example.unicorn.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -25,6 +25,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+
 
 class SignInActivity : AppCompatActivity() {
     private val RC_SIGN_IN:Int = 123
@@ -39,7 +40,7 @@ class SignInActivity : AppCompatActivity() {
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
-        googleSignInClient= GoogleSignIn.getClient(this,gso)
+        googleSignInClient= GoogleSignIn.getClient(this, gso)
         auth=Firebase.auth
         signInButton.setOnClickListener{
             signIn()
@@ -94,10 +95,10 @@ class SignInActivity : AppCompatActivity() {
 
     private fun updateUI(firebaseUser: FirebaseUser?) {
 if(firebaseUser!=null){
-    val user= User(firebaseUser.uid , firebaseUser.displayName,firebaseUser.photoUrl.toString())
+    val user= User(firebaseUser.uid, firebaseUser.displayName, firebaseUser.photoUrl.toString())
     val userDao=UserDao()
     userDao.addUser(user)
-    val mainActivityIntent= Intent(this,MainActivity::class.java)
+    val mainActivityIntent= Intent(this, MainActivity::class.java)
     startActivity(mainActivityIntent)
     finish()
 }
@@ -105,6 +106,16 @@ else {
     signInButton.visibility=View.VISIBLE
     progbar.visibility=GONE
         }
+    }
+
+    fun revokeAccess() {
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+        googleSignInClient = GoogleSignIn.getClient(this, gso)
+     googleSignInClient.revokeAccess()
+
     }
 
 }

@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Unicorn</string>
+    <string name="ig">
+        <a href="https://www.instagram.com/rishu.r7/">rishu.r7 </a>
+    </string>
+    <string name="li">
+        <a href="https://www.linkedin.com/in/rishabh-srivastava-r7/">https://www.linkedin.com/in/rishabh-srivastava-r7/</a>
+    </string>
 </resources>
